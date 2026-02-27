@@ -1,0 +1,124 @@
+component ModuleType1
+    % ModuleType1:2
+    % Module Block
+    %    Model resolution: Detailed
+    %    Number of parallel assemblies: 18
+    %    Number of cells per parallel assembly: 5
+    %
+    % Block is parameterized for this Battery:
+    %    Part number: INR_21700_P30B
+    %    Manufacturer: Molicel
+    %    Web link: https://www.fsaeonline.com/content/Molicel-TDS--INR-18650-P30B-80111.pdf
+    %    Parameterization note: Predefined parameterizations of Simscape components use available data sources for supplying parameter values. Engineering judgement and simplifying assumptions are used to fill in for missing data. As a result, deviations between simulated and actual physical behavior should be expected. To ensure requisite accuracy, you should validate simulated behavior against experimental data and refine component models as necessary.
+    %
+    %    MATLAB version: 25.2 
+    %    Simscape Battery version: 25.2
+    %    Simscape code generated on: 01-Oct-2025 22:39:42
+
+    parameters(ExternalAccess=none)
+        AmbientResistanceConnectionIndex = getConnectionIndex(AmbientResistance,S); % AmbientResistanceConnectionIndex
+        P = 5; % Batteries in Parallel
+        S = 18; % Batteries in Series
+        CellCount = P*S; % Number of cells in battery
+        NumCellThermalNodeElements = P30B_ParallelAssembly(1).NumCellThermalNodeElements; % NumCellThermalNodeElements
+    end
+
+    parameters
+        SOC_vecCell = {[0 0.01 0.02 0.03 0.04 0.05 0.06 0.07 0.08 0.09 0.1 0.11 0.12 0.13 0.14 0.15 0.16 0.17 0.18 0.19 0.2 0.21 0.22 0.23 0.24 0.25 0.26 0.27 0.28 0.29 0.3 0.31 0.32 0.33 0.34 0.35 0.36 0.37 0.38 0.39 0.4 0.41 0.42 0.43 0.44 0.45 0.46 0.47 0.48 0.49 0.5 0.51 0.52 0.53 0.54 0.55 0.56 0.57 0.58 0.59 0.6 0.61 0.62 0.63 0.64 0.65 0.66 0.67 0.68 0.69 0.7 0.71 0.72 0.73 0.74 0.75 0.76 0.77 0.78 0.79 0.8 0.81 0.82 0.83 0.84 0.85 0.86 0.87 0.88 0.89 0.9 0.91 0.92 0.93 0.94 0.95 0.96 0.97 0.98 0.99 1] ,'1'}; % Vector of state-of-charge values, SOC
+        V0_vecCell = {[3.17242 3.18272 3.19302 3.20331 3.21361 3.22391 3.23421 3.24451 3.25481 3.2651 3.2754 3.2857 3.296 3.3063 3.31659 3.32689 3.33719 3.34749 3.35779 3.36809 3.37838 3.38868 3.39898 3.40928 3.41958 3.42988 3.44017 3.45047 3.46077 3.47107 3.48137 3.49166 3.50196 3.51226 3.52256 3.53286 3.54316 3.55345 3.56375 3.57405 3.58435 3.59465 3.60495 3.61524 3.62554 3.63584 3.64614 3.65644 3.66673 3.67703 3.68733 3.69763 3.71041 3.72113 3.72997 3.73882 3.74912 3.75936 3.76951 3.7791 3.78865 3.79787 3.80709 3.8161 3.82509 3.83409 3.84308 3.85207 3.86107 3.87006 3.87901 3.88831 3.89824 3.90887 3.91951 3.93012 3.94073 3.95138 3.96184 3.97226 3.98268 3.99311 4.0032 4.01221 4.01944 4.02668 4.03286 4.03874 4.04383 4.0488 4.05377 4.05873 4.06312 4.06753 4.07333 4.08117 4.08904 4.09911 4.11111 4.13802 4.16831] ,'V'}; % Open-circuit voltage, V0(SOC)
+        V_rangeCell = {[2.25 Inf] ,'V'}; % Terminal voltage operating range [Min Max]
+        R0_vecCell = {[0.02095 0.01921 0.01774 0.0166 0.01557 0.01469 0.01398 0.01338 0.01283 0.01239 0.01196 0.01155 0.01116 0.01079 0.01042 0.01007 0.00974 0.00949 0.00924 0.009 0.00876 0.00855 0.00843 0.00832 0.00826 0.00825 0.00825 0.00826 0.00827 0.00828 0.0083 0.00834 0.00838 0.00842 0.00848 0.00855 0.00863 0.00871 0.00879 0.00887 0.00895 0.00903 0.00911 0.00918 0.00925 0.00931 0.00938 0.00946 0.00953 0.00961 0.00968 0.00976 0.00991 0.01 0.01003 0.01006 0.01013 0.01022 0.0103 0.01037 0.01043 0.01049 0.01055 0.01061 0.01066 0.01072 0.01077 0.01082 0.01088 0.01093 0.01099 0.01105 0.01114 0.01125 0.01136 0.01148 0.01161 0.01175 0.01188 0.01202 0.01215 0.01228 0.01241 0.01253 0.01261 0.01269 0.01275 0.0128 0.01285 0.01289 0.01294 0.01298 0.01296 0.01292 0.01292 0.01288 0.01282 0.0128 0.01232 0.01214 0.00952] ,'Ohm'}; % Terminal resistance, R0(SOC)
+        AHCell = {4.493 ,'hr*A'}; % Cell capacity, AH
+        extrapolation_optionCell = {simscape.enum.extrapolation.nearest,'1'}; % Extrapolation method for all tables
+        thermal_massCell = {63 ,'J/K'}; % Thermal mass
+        AmbientResistance = {25,'K/W'}; % Cell level ambient thermal path resistance
+    end
+
+    parameters(Access=private)
+        AmbientResistanceScaled = AmbientResistance; % Scaled cell level ambient thermal path resistance
+    end
+
+    nodes
+        p = foundation.electrical.electrical; % +
+        n = foundation.electrical.electrical; % -
+        AmbH = foundation.thermal.thermal; % AmbH
+    end
+
+    variables
+        iCell = {repmat(0,90,1),'A'}; % Cell current (positive in)
+        vCell = {repmat(0,90,1),'V'}; % Cell terminal voltage
+        socCell = {value={repmat(1,90,1),'1'},priority=priority.high}; % Cell state of charge
+        numCyclesCell = {value={repmat(0,90,1),'1'},priority=priority.high}; % Cell discharge cycles
+        temperatureCell = {value={repmat(298.15,90,1),'K'},priority=priority.high}; % Cell temperature
+        vParallelAssembly = {value={repmat(0,18,1),'V'},priority=priority.none}; % Parallel Assembly Voltage
+        socParallelAssembly = {value={repmat(1,18,1),'1'},priority=priority.none}; % Parallel Assembly state of charge
+    end
+
+    equations
+        assert(length(iCell) == CellCount);
+        assert(length(vCell) == CellCount);
+        assert(length(socCell) == CellCount);
+        assert(length(numCyclesCell) == CellCount);
+        assert(length(temperatureCell) == CellCount);
+        assert(length(vParallelAssembly) == S);
+        assert(length(socParallelAssembly) == S);
+        assert(isequal(size(AmbientResistance),[1,1]) || isequal(size(AmbientResistance),[NumCellThermalNodeElements,P*S]),...
+            'Cell level ambient thermal path resistance must be scalar or an M-by-N array, where M is the number of elements of the cell thermal node and N is number of cells modeled by the block.');
+    end
+
+    connections
+        connect(p,P30B_ParallelAssembly(1).p);
+        connect(n,P30B_ParallelAssembly(end).n);
+        connect(P30B_ParallelAssembly(:).AmbH,AmbH);
+    end
+
+    annotations
+        [p] : Side=top;
+        [n] : Side=bottom;
+        UILayout = [UIGroup("Main",SOC_vecCell,V0_vecCell,V_rangeCell,R0_vecCell,AHCell,extrapolation_optionCell),...
+            UIGroup("Thermal",thermal_massCell,AmbientResistance)];
+        Icon = 'module.svg';
+    end
+
+    for Sidx = 1:S
+        components(ExternalAccess=observe,CompileReuse=true)
+            P30B_ParallelAssembly(Sidx) = P30B_sim.ParallelAssemblies.ParallelAssemblyType1(...
+                P = P,SOC_vecCell = SOC_vecCell,V0_vecCell = V0_vecCell,...
+                V_rangeCell = V_rangeCell,R0_vecCell = R0_vecCell,AHCell = AHCell,...
+                extrapolation_optionCell = extrapolation_optionCell,...
+                thermal_massCell = thermal_massCell,...
+                AmbientResistance = AmbientResistanceScaled(:,AmbientResistanceConnectionIndex(1,Sidx):AmbientResistanceConnectionIndex(2,Sidx)),...
+                iCell.priority = priority.none,vCell.priority = priority.none,...
+                socCell.priority = priority.none,numCyclesCell.priority = priority.none,...
+                temperatureCell.priority = priority.none,vParallelAssembly.priority = priority.none,...
+                socParallelAssembly.priority = priority.none);
+        end
+    end
+
+    for Sidx = 1:S-1
+        connections
+            connect(P30B_ParallelAssembly(Sidx).n,P30B_ParallelAssembly(Sidx+1).p);
+        end
+    end
+
+    for Sidx = 1:S
+        equations
+            P30B_ParallelAssembly(Sidx).iCell == reshape(iCell((Sidx*P-(P-1)):(Sidx*P)),P,1);
+            P30B_ParallelAssembly(Sidx).vCell == reshape(vCell((Sidx*P-(P-1)):(Sidx*P)),P,1);
+            P30B_ParallelAssembly(Sidx).socCell == reshape(socCell((Sidx*P-(P-1)):(Sidx*P)),P,1);
+            P30B_ParallelAssembly(Sidx).numCyclesCell == reshape(numCyclesCell((Sidx*P-(P-1)):(Sidx*P)),P,1);
+            P30B_ParallelAssembly(Sidx).temperatureCell == reshape(temperatureCell((Sidx*P-(P-1)):(Sidx*P)),P,1);
+            P30B_ParallelAssembly(Sidx).vParallelAssembly == vParallelAssembly(Sidx);
+            P30B_ParallelAssembly(Sidx).socParallelAssembly == socParallelAssembly(Sidx);
+        end
+    end
+end
+
+function indexes = getConnectionIndex(parameter,numChildComponents)
+    definitions
+        parameterWidth=size(parameter,2);
+        firstIndex=(1:max(1,parameterWidth/numChildComponents):parameterWidth) .* ones(1,numChildComponents);
+        lastIndex=firstIndex + max(1,parameterWidth/numChildComponents)-1;
+        indexes=[firstIndex;lastIndex];
+    end
+end
